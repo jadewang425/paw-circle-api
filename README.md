@@ -32,6 +32,34 @@ AAU, I want to...
 - JavaScript
 - CSS
 
+## API
+### Authentication
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/sign-up`             | `users#signup`    |
+| POST   | `/sign-in`             | `users#signin`    |
+| PATCH  | `/change-password/`    | `users#changepw`  |
+| DELETE | `/sign-out/`           | `users#signout`   |
+
+### Meetups
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| GET    | `/meetups`             | `meetups#index`      |
+| POST   | `/meetups/<meetup_id>` | `meetups#show`       |
+| POST   | `/meetups`             | `meetups#create`     |
+| PATCH  | `/meetups/<meetup_id>` | `meetups#update`     |
+| DELETE | `/meetups/<meetup_id>` | `meetups#delete`     |
+
+### Pets
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/pets`                | `pets#create`     |
+| PATCH  | `/pets/<pet_id>`       | `pets#update`     |
+| DELETE | `/pets/<pet_id>`       | `pets#delete`     |
+
 ## Wireframes 
 ### Profile Page
 ![layout wireframe](https://i.imgur.com/cHb3n3L.png)
