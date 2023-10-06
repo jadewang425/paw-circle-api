@@ -71,4 +71,4 @@ AAU, I want to...
 ![layout wireframe](https://i.imgur.com/sN05N8M.png)
 
 ## ERD
-![layout wireframe](https://i.imgur.com/VKoTxPc.png)
+![layout wireframe](https://i.imgur.com/cNTlUjb.png)
