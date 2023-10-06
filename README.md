@@ -1,6 +1,6 @@
 # PawCircle
 
-An app for all the pet owners to plan meetups for their pets to meet friends!
+An app for all the pet owners to plan meetups for their pets to meet friends! It allows users to create their profiles and meetups, or join meetups created by the others!
 
 [Screenshot]
 
@@ -41,5 +41,6 @@ AAU, I want to...
 ![layout wireframe](https://i.imgur.com/dzECivt.png)
 ### Meetup Create Page
 ![layout wireframe](https://i.imgur.com/sN05N8M.png)
-### ERD
-![layout wireframe](https://i.imgur.com/Mt70aIV.png)
+
+## ERD
+![layout wireframe](https://i.imgur.com/7TGfrGV.png)
