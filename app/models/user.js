@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema(
 	{
+		username: {
+			type: String,
+			required: true,
+			unique: true,
+		},
 		email: {
 			type: String,
 			required: true,
@@ -12,6 +17,12 @@ const userSchema = new mongoose.Schema(
 			required: true,
 		},
 		token: String,
+		avatar: String,
+		about: String,
+		meetups: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Meetup'
+		}]
 	},
 	{
 		timestamps: true,
