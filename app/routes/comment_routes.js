@@ -12,14 +12,15 @@ const router = express.Router()
 
 // CREATE
 // POST comment
-router.post('/:meetupId', requireToken, (req, res, next) => {
+router.post('/meetups/:meetupId', requireToken, (req, res, next) => {
 	// set owner of new pet to be current user
-	req.body.author = req.user.id
+	req.body.comment.owner = req.user._id
+    console.log('req.user', req.user)
 
     Meetup.findById(req.params.meetupId)
         .then(handle404)
         .then(meetup => {
-            meetup.comments.push(req.body)
+            meetup.comments.push(req.body.comment)
             return meetup.save()
         })
 		.then((meetup) => {
@@ -29,21 +30,26 @@ router.post('/:meetupId', requireToken, (req, res, next) => {
 })
 
 // UPDATE
-// PATCH /pets/:id
-// router.patch('/pets/:id', requireToken, removeBlanks, (req, res, next) => {
-// 	// if the client attempts to change the `owner` property by including a new
-// 	// owner, prevent that by deleting that key/value pair
-// 	delete req.body.pet.owner
+// PATCH /meetups/:meetupId/:commentId
+// router.patch('/meetups/:meetupId/:commentId', requireToken, (req, res, next) => {
+//     // author should not be changed
+// 	delete req.body.comment.owner
 
-// 	Pet.findById(req.params.id)
+//     const mId = req.params.meetupId
+//     const cId = req.params.commentId
+// 	Meetup.findById(mId)
 // 		.then(handle404)
-// 		.then((pet) => {
+// 		.then(meetup => {
+//             const theComment = meetup.comments.id(cId)
+//             console.log('theComment', theComment)
+//             console.log('req.body', req.body.comment)
 // 			// pass the `req` object and the Mongoose record to `requireOwnership`
 // 			// it will throw an error if the current user isn't the owner
-// 			requireOwnership(req, pet)
+// 			requireOwnership(req, theComment)
 
 // 			// pass the result of Mongoose's `.update` to the next `.then`
-// 			return pet.updateOne(req.body.pet)
+// 			theComment.updateOne(req.body)
+// 			return meetup.save()
 // 		})
 // 		// if that succeeded, return 204 and no JSON
 // 		.then(() => res.sendStatus(204))
@@ -51,21 +57,24 @@ router.post('/:meetupId', requireToken, (req, res, next) => {
 // 		.catch(next)
 // })
 
-// // DESTROY
-// // DELETE /pets/:id
-// router.delete('/pets/:id', requireToken, (req, res, next) => {
-// 	Pet.findById(req.params.id)
-// 		.then(handle404)
-// 		.then((pet) => {
+// // DELETE /meetups/:meetupId/:commentId
+router.delete('/meetups/:meetupId/:commentId', requireToken, (req, res, next) => {
+    const mId = req.params.meetupId
+    const cId = req.params.commentId
+	Meetup.findById(mId)
+		.then(handle404)
+		.then(meetup => {
+            const theComment = meetup.comments.id(cId)
 // 			// throw an error if current user doesn't own `meetup`
-// 			requireOwnership(req, pet)
+			requireOwnership(req, theComment)
 // 			// delete the meetup ONLY IF the above didn't throw
-// 			pet.deleteOne()
-// 		})
+			theComment.deleteOne()
+            return meetup.save()
+		})
 // 		// send back 204 and no content if the deletion succeeded
-// 		.then(() => res.sendStatus(204))
+		.then(() => res.sendStatus(204))
 // 		// if an error occurs, pass it to the handler
-// 		.catch(next)
-// })
+		.catch(next)
+})
 
 module.exports = router

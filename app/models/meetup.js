@@ -24,7 +24,7 @@ const meetupSchema = new mongoose.Schema(
 		attendees: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Pet',
-			required: true,
+			// required: true,
 		}],
 		comments: [commentSchema],
 		owner: {

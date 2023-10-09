@@ -46,6 +46,7 @@ router.post('/sign-up', (req, res, next) => {
 		.then((hash) => {
 			// return necessary params to create a user
 			return {
+				username: req.body.credentials.username,
 				email: req.body.credentials.email,
 				hashedPassword: hash,
 			}
@@ -66,7 +67,7 @@ router.post('/sign-in', (req, res, next) => {
 	let user
 
 	// find a user based on the email that was passed
-	User.findOne({ email: req.body.credentials.email })
+	User.findOne({ username: req.body.credentials.username })
 		.then((record) => {
 			// if we didn't find a user with that email, send 401
 			if (!record) {

@@ -28,9 +28,7 @@ AAU, I want to...
 - Express.js
 - Mongoose
 - MongoDB
-- React
 - JavaScript
-- CSS
 
 ## API
 ### Authentication
@@ -60,15 +58,6 @@ AAU, I want to...
 | PATCH  | `/pets/<pet_id>`       | `pets#update`     |
 | DELETE | `/pets/<pet_id>`       | `pets#delete`     |
 
-## Wireframes 
-### Profile Page
-![layout wireframe](https://i.imgur.com/cHb3n3L.png)
-### Meetup Index Page
-![layout wireframe](https://i.imgur.com/6wWNe4R.png)
-### Meetup Show Page
-![layout wireframe](https://i.imgur.com/dzECivt.png)
-### Meetup Create Page
-![layout wireframe](https://i.imgur.com/sN05N8M.png)
 
 ## ERD
 ![layout wireframe](https://i.imgur.com/cNTlUjb.png)

@@ -6,8 +6,8 @@ const cors = require('cors')
 // require route files
 const meetupRoutes = require('./app/routes/meetup_routes')
 const petRoutes = require('./app/routes/pet_routes')
-const commentRoutes = require('./app/routes/comment_routes')
 const userRoutes = require('./app/routes/user_routes')
+const commentRoutes = require('./app/routes/comment_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -69,8 +69,8 @@ app.use(requestLogger)
 // register route files
 app.use(meetupRoutes)
 app.use(petRoutes)
-app.use(commentRoutes)
 app.use(userRoutes)
+app.use(commentRoutes)
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
