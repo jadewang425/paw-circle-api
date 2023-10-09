@@ -26,7 +26,7 @@ const auth = require('./lib/auth')
 const serverDevPort = 8000
 const clientDevPort = 3000
 
-// establish database connection
+// database connection
 // use new version of URL parser
 // use createIndex instead of deprecated ensureIndex
 mongoose.connect(db, {
@@ -37,7 +37,7 @@ mongoose.connect(db, {
 const app = express()
 
 // set CORS headers on response from this API using the `cors` NPM package
-// `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
+// `CLIENT_ORIGIN` is an environment variable that will be set on deployment
 app.use(
 	cors({
 		origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}`,
