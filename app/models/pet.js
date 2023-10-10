@@ -9,6 +9,7 @@ const petSchema = new mongoose.Schema(
 		type: {
 			type: String,
 			enum: ['Dog', 'Cat', 'Other'],
+			default: 'Dog',
 			required: true,
 		},
 		birthday: {

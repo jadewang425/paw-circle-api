@@ -6,6 +6,7 @@ const Meetup = require('../models/meetup')
 const customErrors = require('../../lib/custom_errors')
 const handle404 = customErrors.handle404
 const requireOwnership = customErrors.requireOwnership
+const removeBlanks = require('../../lib/remove_blank_fields')
 const requireToken = passport.authenticate('bearer', { session: false })
 
 const router = express.Router()
@@ -31,29 +32,24 @@ router.post('/meetups/:meetupId', requireToken, (req, res, next) => {
 
 // UPDATE
 // PATCH /meetups/:meetupId/:commentId
-// router.patch('/meetups/:meetupId/:commentId', requireToken, (req, res, next) => {
+router.patch('/meetups/:meetupId/:commentId', requireToken, (req, res, next) => {
 //     // author should not be changed
 // 	delete req.body.comment.owner
 
-//     const mId = req.params.meetupId
-//     const cId = req.params.commentId
-// 	Meetup.findById(mId)
-// 		.then(handle404)
-// 		.then(meetup => {
-//             const theComment = meetup.comments.id(cId)
-//             console.log('theComment', theComment)
-//             console.log('req.body', req.body.comment)
-
-// 			requireOwnership(req, theComment)
-
-// 			// pass the result of Mongoose's `.update` to the next `.then`
-// 			return theComment.updateOne(req.body.comment)
-// 		})
-// 		// if that succeeded, return 204 and no JSON
-// 		.then(() => res.sendStatus(204))
-// 		// if an error occurs, pass it to the handler
-// 		.catch(next)
-// })
+    const mId = req.params.meetupId
+    const cId = req.params.commentId
+	Meetup.findById(mId)
+		.then(handle404)
+		.then(meetup => {
+            const theComment = meetup.comments.id(cId)
+			requireOwnership(req, theComment)
+			theComment.set(req.body.comment)
+			return meetup.save()
+		})
+		// if that succeeded, return 204 and no JSON
+		.then(() => res.sendStatus(204))
+		.catch(next)
+})
 
 // // DELETE /meetups/:meetupId/:commentId
 router.delete('/meetups/:meetupId/:commentId', requireToken, (req, res, next) => {
