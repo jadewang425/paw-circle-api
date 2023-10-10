@@ -15,7 +15,7 @@ const router = express.Router()
 router.post('/meetups/:meetupId', requireToken, (req, res, next) => {
 	// set owner of new pet to be current user
 	req.body.comment.owner = req.user._id
-    console.log('req.user', req.user)
+    // console.log('req.user', req.user)
 
     Meetup.findById(req.params.meetupId)
         .then(handle404)
@@ -43,13 +43,11 @@ router.post('/meetups/:meetupId', requireToken, (req, res, next) => {
 //             const theComment = meetup.comments.id(cId)
 //             console.log('theComment', theComment)
 //             console.log('req.body', req.body.comment)
-// 			// pass the `req` object and the Mongoose record to `requireOwnership`
-// 			// it will throw an error if the current user isn't the owner
+
 // 			requireOwnership(req, theComment)
 
 // 			// pass the result of Mongoose's `.update` to the next `.then`
-// 			theComment.updateOne(req.body)
-// 			return meetup.save()
+// 			return theComment.updateOne(req.body.comment)
 // 		})
 // 		// if that succeeded, return 204 and no JSON
 // 		.then(() => res.sendStatus(204))

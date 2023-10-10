@@ -144,4 +144,21 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
 		.catch(next)
 })
 
+// myprofile page
+router.get('/my-profile', requireToken, (req, res, next) => {
+	let user
+	// `req.user` will be determined by decoding the token payload
+	User.findById(req.user.id)
+		// save user outside the promise chain
+		// .then((record) => {
+		// 	user = record
+		// })
+		// respond with no content and status 200
+		.then((user) => {
+			res.status(201).json({ user: user.toObject() })
+		})
+		// pass any errors along to the error handler
+		.catch(next)
+})
+
 module.exports = router

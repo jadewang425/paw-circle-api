@@ -17,6 +17,9 @@ const meetupSchema = new mongoose.Schema(
 			enum: ['Dog', 'Cat', 'Other'],
 			required: true,
 		},
+		description: {
+			type: String,
+		},
 		location: {
 			type: String,
 			required: true,
@@ -30,7 +33,7 @@ const meetupSchema = new mongoose.Schema(
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
-			required: true,
+			// required: true,
 		},
 	},
 	{

@@ -5,6 +5,7 @@ const passport = require('passport')
 
 // pull in Mongoose model for meetups
 const Meetup = require('../models/meetup')
+const User = require('../models/user')
 
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
@@ -30,7 +31,7 @@ const router = express.Router()
 // GET /meetups
 router.get('/meetups', (req, res, next) => {
 	Meetup.find()
-		.then((meetups) => {
+		.then(meetups => {
 			// `meetups` will be an array of Mongoose documents
 			// we want to convert each one to a POJO, so we use `.map` to
 			// apply `.toObject` to each one
