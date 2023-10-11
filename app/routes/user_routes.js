@@ -7,7 +7,10 @@ const User = require('../models/user')
 const customErrors = require('../../lib/custom_errors')
 const BadParamsError = customErrors.BadParamsError
 const BadCredentialsError = customErrors.BadCredentialsError
+const OwnershipError = customErrors.OwnershipError
 const handle404 = customErrors.handle404
+const requireOwnership = customErrors.requireOwnership
+const removeBlanks = require('../../lib/remove_blank_fields')
 const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 
@@ -138,6 +141,23 @@ router.get('/pawrent/:id', requireToken, (req, res, next) => {
 			res.status(201).json({ user: user.toObject() })
 		})
 		// pass any errors along to the error handler
+		.catch(next)
+})
+
+// userprofile page / PATCH
+router.patch('/pawrent/:id', requireToken, removeBlanks, (req, res, next) => {
+	// console.log('req.params.id', req.params.id)
+	User.findById(req.params.id)
+	.then(handle404)
+	.then((user) => {
+			// console.log('user', user)
+			// requireOwnership(req, user)
+			if (!req.user._id.equals(user._id)) {
+				throw new OwnershipError()
+			}
+			return user.updateOne(req.body.user)
+		})
+		.then(() => res.sendStatus(204))
 		.catch(next)
 })
 

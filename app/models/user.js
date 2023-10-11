@@ -18,7 +18,10 @@ const userSchema = new mongoose.Schema(
 		},
 		token: String,
 		avatar: String,
-		about: String,
+		about: {
+			type: String,
+			default: ''
+		},
 		meetups: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Meetup'

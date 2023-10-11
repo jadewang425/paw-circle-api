@@ -62,15 +62,11 @@ router.post('/meetups', requireToken, (req, res, next) => {
 // UPDATE
 // PATCH /meetups/:id
 router.patch('/meetups/:id', requireToken, removeBlanks, (req, res, next) => {
-	// if the client attempts to change the `owner` property by including a new
-	// owner, prevent that by deleting that key/value pair
 	delete req.body.meetup.owner
-
 	Meetup.findById(req.params.id)
 		.then(handle404)
 		.then((meetup) => {
 			requireOwnership(req, meetup)
-
 			return meetup.updateOne(req.body.meetup)
 		})
 		.then(() => res.sendStatus(204))

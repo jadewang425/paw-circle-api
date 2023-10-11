@@ -44,7 +44,8 @@ AAU, I want to...
 
 | Verb   | URI Pattern            | Controller#Action |
 |--------|------------------------|-------------------|
-| POST   | `/pawrent/<user_id>`   | `meetups#show`    |
+| GET    | `/pawrent/<user_id>`   | `users#show`      |
+| PATCH  | `/pawrent/<user_id>`   | `users#update`    |
 
 ### Pets
 
