@@ -14,10 +14,7 @@ const router = express.Router()
 // CREATE
 // POST comment
 router.post('/meetups/:meetupId', requireToken, (req, res, next) => {
-	// set owner of new pet to be current user
 	req.body.comment.owner = req.user._id
-    // console.log('req.user', req.user)
-
     Meetup.findById(req.params.meetupId)
         .then(handle404)
         .then(meetup => {
@@ -33,9 +30,7 @@ router.post('/meetups/:meetupId', requireToken, (req, res, next) => {
 // UPDATE
 // PATCH /meetups/:meetupId/:commentId
 router.patch('/meetups/:meetupId/:commentId', requireToken, (req, res, next) => {
-//     // author should not be changed
-// 	delete req.body.comment.owner
-
+	delete req.body.comment.owner
     const mId = req.params.meetupId
     const cId = req.params.commentId
 	Meetup.findById(mId)

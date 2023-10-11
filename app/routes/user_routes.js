@@ -146,12 +146,9 @@ router.get('/pawrent/:id', requireToken, (req, res, next) => {
 
 // userprofile page / PATCH
 router.patch('/pawrent/:id', requireToken, removeBlanks, (req, res, next) => {
-	// console.log('req.params.id', req.params.id)
 	User.findById(req.params.id)
 	.then(handle404)
 	.then((user) => {
-			// console.log('user', user)
-			// requireOwnership(req, user)
 			if (!req.user._id.equals(user._id)) {
 				throw new OwnershipError()
 			}
