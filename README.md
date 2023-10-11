@@ -40,23 +40,40 @@ AAU, I want to...
 | PATCH  | `/change-password/`    | `users#changepw`  |
 | DELETE | `/sign-out/`           | `users#signout`   |
 
-### Meetups
+### Users
 
 | Verb   | URI Pattern            | Controller#Action |
 |--------|------------------------|-------------------|
-| GET    | `/meetups`             | `meetups#index`      |
-| POST   | `/meetups/<meetup_id>` | `meetups#show`       |
-| POST   | `/meetups`             | `meetups#create`     |
-| PATCH  | `/meetups/<meetup_id>` | `meetups#update`     |
-| DELETE | `/meetups/<meetup_id>` | `meetups#delete`     |
+| POST   | `/pawrent/<user_id>`   | `meetups#show`    |
 
 ### Pets
 
 | Verb   | URI Pattern            | Controller#Action |
 |--------|------------------------|-------------------|
+| GET    | `/pets`                | `pets#index`      |
+| GET    | `/pets/<pet_id>`       | `pets#show`       |
 | POST   | `/pets`                | `pets#create`     |
 | PATCH  | `/pets/<pet_id>`       | `pets#update`     |
 | DELETE | `/pets/<pet_id>`       | `pets#delete`     |
+
+### Meetups
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| GET    | `/meetups`             | `meetups#index`   |
+| GET    | `/meetups/<meetup_id>` | `meetups#show`    |
+| POST   | `/meetups`             | `meetups#create`  |
+| PATCH  | `/meetups/<meetup_id>` | `meetups#update`  |
+| DELETE | `/meetups/<meetup_id>` | `meetups#delete`  |
+
+### Comments
+
+| Verb   | URI Pattern                         | Controller#Action |
+|--------|-------------------------------------|-------------------|
+| POST   | `/meetups/<meetup_id>`              | `comments#create` |
+| PATCH  | `/meetups/<meetup_id>/<comment_id>` | `comments#update` |
+| DELETE | `/meetups/<meetup_id>/<comment_id>` | `comments#delete` |
+
 
 
 ## ERD

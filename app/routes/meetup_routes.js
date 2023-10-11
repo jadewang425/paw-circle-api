@@ -12,7 +12,6 @@ const requireOwnership = customErrors.requireOwnership
 const removeBlanks = require('../../lib/remove_blank_fields')
 const requireToken = passport.authenticate('bearer', { session: false })
 
-// instantiate a router (mini app that only handles routes)
 const router = express.Router()
 
 // INDEX
@@ -70,20 +69,14 @@ router.patch('/meetups/:id', requireToken, removeBlanks, (req, res, next) => {
 	Meetup.findById(req.params.id)
 		.then(handle404)
 		.then((meetup) => {
-			// pass the `req` object and the Mongoose record to `requireOwnership`
-			// it will throw an error if the current user isn't the owner
 			requireOwnership(req, meetup)
 
-			// pass the result of Mongoose's `.update` to the next `.then`
 			return meetup.updateOne(req.body.meetup)
 		})
-		// if that succeeded, return 204 and no JSON
 		.then(() => res.sendStatus(204))
-		// if an error occurs, pass it to the handler
 		.catch(next)
 })
 
-// DESTROY
 // DELETE /meetups/:id
 router.delete('/meetups/:id', requireToken, (req, res, next) => {
 	Meetup.findById(req.params.id)

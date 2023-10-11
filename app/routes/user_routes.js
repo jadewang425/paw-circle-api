@@ -2,20 +2,13 @@ const express = require('express')
 const crypto = require('crypto')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
-
-// see above for explanation of "salting", 10 rounds is recommended
 const bcryptSaltRounds = 10
-
-const errors = require('../../lib/custom_errors')
-
-const BadParamsError = errors.BadParamsError
-const BadCredentialsError = errors.BadCredentialsError
-
 const User = require('../models/user')
-const requireToken = passport.authenticate('bearer', { session: false })
 const customErrors = require('../../lib/custom_errors')
+const BadParamsError = customErrors.BadParamsError
+const BadCredentialsError = customErrors.BadCredentialsError
 const handle404 = customErrors.handle404
-
+const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 
 // SIGN UP
