@@ -40,7 +40,7 @@ router.post('/sign-up', (req, res, next) => {
 				hashedPassword: hash,
 			}
 		})
-		// create user with provided email and hashed password
+		// create user with provided username, email, and hashed password
 		.then((user) => User.create(user))
 		// send the new user object back with status 201, but `hashedPassword`
 		// won't be send because of the `transform` in the User model
@@ -55,10 +55,10 @@ router.post('/sign-in', (req, res, next) => {
 	const pw = req.body.credentials.password
 	let user
 
-	// find a user based on the email that was passed
+	// find a user based on the username that was passed
 	User.findOne({ username: req.body.credentials.username })
 		.then((record) => {
-			// if we didn't find a user with that email, send 401
+			// if we didn't find a user with that username, send 401
 			if (!record) {
 				throw new BadCredentialsError()
 			}

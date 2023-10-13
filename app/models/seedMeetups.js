@@ -11,7 +11,7 @@ mongoose.connect(db, {
     useNewUrlParser: true
 })
     .then(() => {
-        Meetup.deleteMany({ owner: null})
+        Meetup.deleteMany({ owner: null })
             .then(deleteMeetups => {
                 console.log('the deleted meetups: \n', deleteMeetups)
 

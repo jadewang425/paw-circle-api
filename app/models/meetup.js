@@ -6,34 +6,39 @@ const meetupSchema = new mongoose.Schema(
 	{
 		title: {
 			type: String,
-			required: true,
+			required: true
 		},
 		date: {
 			type: Date,
-			required: true,
+			required: true
+		},
+		time: {
+			type: Date,
+			// required: true
 		},
 		type: {
 			type: String,
 			enum: ['Dog', 'Cat', 'Other'],
-			required: true,
+			required: true
 		},
 		description: {
 			type: String,
+			required: true
 		},
 		location: {
 			type: String,
-			required: true,
+			required: true
 		},
 		attendees: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Pet',
-			// required: true,
+			// required: true
 		}],
 		comments: [commentSchema],
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
-			// required: true,
+			// required: true
 		},
 	},
 	{

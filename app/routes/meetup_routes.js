@@ -32,7 +32,7 @@ router.get('/meetups', (req, res, next) => {
 
 // SHOW
 // GET /meetups/:id
-router.get('/meetups/:id', requireToken, (req, res, next) => {
+router.get('/meetups/:id', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	Meetup.findById(req.params.id)
 		.then(handle404)
