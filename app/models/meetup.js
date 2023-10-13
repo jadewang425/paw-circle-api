@@ -12,10 +12,6 @@ const meetupSchema = new mongoose.Schema(
 			type: Date,
 			required: true
 		},
-		time: {
-			type: Date,
-			// required: true
-		},
 		type: {
 			type: String,
 			enum: ['Dog', 'Cat', 'Other'],

@@ -61,7 +61,7 @@ router.post('/meetups', requireToken, (req, res, next) => {
 
 // UPDATE
 // PATCH /meetups/:id
-router.patch('/meetups/:id', requireToken, removeBlanks, (req, res, next) => {
+router.patch('/meetups/:id', removeBlanks, (req, res, next) => {
 	delete req.body.meetup.owner
 	Meetup.findById(req.params.id)
 		.then(handle404)
