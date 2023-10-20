@@ -134,7 +134,7 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
 })
 
 // userprofile page / SHOW
-router.get('/pawrent/:id', requireToken, (req, res, next) => {
+router.get('/pawrent/:id', (req, res, next) => {
 	User.findById(req.params.id)
 		.then(handle404)
 		.then((user) => {

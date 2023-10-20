@@ -36,6 +36,7 @@ router.get('/meetups/:id', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	Meetup.findById(req.params.id)
 		.populate('owner')
+		.populate('comments.owner')
 		.then(handle404)
 		// if `findById` is succesful, respond with 200 and "meetup" JSON
 		.then((meetup) => res.status(200).json({ meetup: meetup.toObject() }))
