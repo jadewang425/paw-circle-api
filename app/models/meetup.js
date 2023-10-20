@@ -21,10 +21,7 @@ const meetupSchema = new mongoose.Schema(
 			type: String,
 			required: true
 		},
-		location: {
-			type: String,
-			required: true
-		},
+		location: [String],
 		attendees: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Pet',
